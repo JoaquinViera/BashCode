@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd onsas_beta
+aux="inputONSASversion = " ;
+version=$(grep -E 'ONSASversion =' ONSAS.m | grep -o "'.*'") ;
+aux2=$aux$version
+
+cd input/inputsVersAnteriores
+for i in *.m ; do
+	sed -i "s/.*inputONSASversion = '\(.*\).*'/$aux2/g" $i
+done	
+
