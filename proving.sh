@@ -1,18 +1,16 @@
 #!/bin/bash
 
+# argument: name of folder or repo to analyze.
 
-cd onsas_beta
+cd "$1"
 git log | grep -B 3 'h:' | grep 'Author:' | sed 's/.*Author:\(.*\)<//' | sed 's/@fing\(.*\)>//'  > ../history.txt
 git log | grep -B 3 'h:'| sed 'N;s/.*Merged\(.*\)\n/HOLA/g' | sed 'N;s/HOLA\(.*\)\n/HOLA/g' | sed '/^HOLA/ d' | grep  'h:' | sed 's/.*\(.*\)h://' > ../history2.txt
-cd .. 
-
+cd ..
 
 paste history.txt history2.txt | sed 's/\t/ /' > FINAL.txt
 
 #~ rm history.txt
 #~ rm history2.txt
-
-
 
 
 sum1=$(awk -F ''  '{sum1 += $9} END {print sum1}' FINAL.txt) 
@@ -53,5 +51,3 @@ for ((i=1;i<=$a;i+=1)); do
 	printf "\n" >> prueba.tex
 done
 printf "\\\end{document}" >> prueba.tex
-
-
