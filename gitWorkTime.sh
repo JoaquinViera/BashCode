@@ -11,7 +11,7 @@ paste history.txt history2.txt | sed 's/\t/ /' > FINAL.txt
 
 #~ rm history.txt
 #~ rm history2.txt
-
+## 
 
 sum1=$(awk -F ''  '{sum1 += $9} END {print sum1}' FINAL.txt) 
 sum2=$(awk -F ''  '{sum2 += $10} END {print sum2}' FINAL.txt)
